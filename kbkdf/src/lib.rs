@@ -8,9 +8,6 @@
 #![no_std]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
-#[cfg(feature = "std")]
-extern crate std;
-
 use core::{fmt, marker::PhantomData, ops::Mul};
 use digest::{
     array::{typenum::Unsigned, Array, ArraySize},
@@ -39,13 +36,7 @@ impl fmt::Display for Error {
     }
 }
 
-#[cfg(feature = "std")]
-mod std_error {
-    use super::Error;
-    use std::error;
-
-    impl error::Error for Error {}
-}
+impl core::error::Error for Error {}
 
 // Helper structure along with [`KbkdfUser`] to compute values of L and H.
 struct KbkdfCore<OutputLen, PrfOutputLen> {
