@@ -21,7 +21,6 @@ pub mod sealed;
 
 #[derive(Debug, PartialEq)]
 pub enum Error {
-    // TODO(baloo): we can probably move that to a compilation error via use of typenum
     InvalidRequestSize,
 }
 
@@ -83,7 +82,6 @@ where
     /// Derives `key` from `kin` and other parameters.
     fn derive(
         &self,
-        //kin: &GenericArray<u8, Prf::KeySize>,
         kin: &[u8],
         use_l: bool,
         use_separator: bool,
